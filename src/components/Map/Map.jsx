@@ -10,7 +10,7 @@ const Map = ({ setCoordinates, setBounds, coordinates }) => {
 		<StyledBoxMapContainer>
 			<GoogleMapReact
 				bootstrapURLKeys={{
-					key: "AIzaSyCTl_BZFOh2xfmMdjiKtouz2_iWpZGgmLc",
+					key: "secret",
 				}}
 				defaultCenter={coordinates}
 				center={coordinates}
