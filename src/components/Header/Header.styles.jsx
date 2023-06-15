@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import { Box, Typography, useMediaQuery, useTheme, alpha } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme, alpha, InputBase } from "@mui/material";
+import styled from "styled-components";
 
 export const StyledTypographyTitle = ({ variant, children }) => {
 	const theme = useTheme();
@@ -57,3 +58,14 @@ export const StyledDivSearchIcon = ({ children }) => {
 		</Box>
 	);
 };
+
+export const StyledInputBase = styled(InputBase)`
+	color: white !important;
+	padding: ${(props) => props.theme.spacing(1, 1, 1, 0)} !important;
+	padding-left: calc(1em + ${(props) => props.theme.spacing(4)}) !important;
+	transition: ${(props) => props.theme.transitions.create("width")} !important;
+	width: 100% !important;
+	${(props) => props.theme.breakpoints.up("md")} {
+		width: 20ch !important;
+	}
+`;

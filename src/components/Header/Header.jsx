@@ -1,15 +1,12 @@
 /* eslint-disable no-unused-vars */
 import { Autocomplete } from "@react-google-maps/api";
+import { AppBar, Toolbar, Box, useTheme } from "@mui/material";
 import {
-	AppBar,
-	Toolbar,
-	Typography,
-	InputBase,
-	Box,
-	useMediaQuery,
-	useTheme,
-} from "@mui/material";
-import { StyledDivSearch, StyledDivSearchIcon, StyledTypographyTitle } from "./Header.styles";
+	StyledDivSearch,
+	StyledDivSearchIcon,
+	StyledTypographyTitle,
+	StyledInputBase,
+} from "./Header.styles";
 import SearchIcon from "@mui/icons-material/Search";
 
 const Header = () => {
@@ -20,7 +17,7 @@ const Header = () => {
 				<StyledTypographyTitle variant={"h5"}>
 					Travel Advisor
 				</StyledTypographyTitle>
-				<Box display={"flex"}>
+				<Box display={"flex"} alignItems={"center"}>
 					<StyledTypographyTitle variant={"h6"}>
 						Explore new places
 					</StyledTypographyTitle>
@@ -29,30 +26,7 @@ const Header = () => {
 						<StyledDivSearchIcon>
 							<SearchIcon />
 						</StyledDivSearchIcon>
-						<InputBase
-							placeholder="Search..."
-							classes={{
-								root: { color: "inherit" },
-								input: {
-									padding: theme.spacing(
-										3,
-										1,
-										1,
-										0
-									),
-									paddingLeft: `calc(1em + ${theme.spacing(
-										4
-									)}`,
-									transition: theme.transitions.create(
-										"width"
-									),
-									width: "100%",
-									[theme.breakpoints.up(
-										"md"
-									)]: { width: "20ch" },
-								},
-							}}
-						/>
+						<StyledInputBase placeholder="Search..." />
 					</StyledDivSearch>
 					{/* </Autocomplete> */}
 				</Box>
