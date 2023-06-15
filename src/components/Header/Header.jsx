@@ -9,9 +9,11 @@ import {
 	useMediaQuery,
 	useTheme,
 } from "@mui/material";
-import { StyledTypographyTitle } from "./Header.styles";
+import { StyledDivSearch, StyledDivSearchIcon, StyledTypographyTitle } from "./Header.styles";
+import SearchIcon from "@mui/icons-material/Search";
 
 const Header = () => {
+	const theme = useTheme();
 	return (
 		<AppBar position="static">
 			<Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -22,20 +24,37 @@ const Header = () => {
 					<StyledTypographyTitle variant={"h6"}>
 						Explore new places
 					</StyledTypographyTitle>
-					{/* <Autocomplete>
-						<div className={classes.search}>
-							<div className={classes.searchIcon}>
-								<SearchIcon />
-							</div>
-							<InputBase
-								placeholder="Search..."
-								classes={{
-									root: classes.inputRoot,
-									input: classes.inputInput,
-								}}
-							/>
-						</div>
-					</Autocomplete> */}
+					{/* <Autocomplete> */}
+					<StyledDivSearch>
+						<StyledDivSearchIcon>
+							<SearchIcon />
+						</StyledDivSearchIcon>
+						<InputBase
+							placeholder="Search..."
+							classes={{
+								root: { color: "inherit" },
+								input: {
+									padding: theme.spacing(
+										3,
+										1,
+										1,
+										0
+									),
+									paddingLeft: `calc(1em + ${theme.spacing(
+										4
+									)}`,
+									transition: theme.transitions.create(
+										"width"
+									),
+									width: "100%",
+									[theme.breakpoints.up(
+										"md"
+									)]: { width: "20ch" },
+								},
+							}}
+						/>
+					</StyledDivSearch>
+					{/* </Autocomplete> */}
 				</Box>
 			</Toolbar>
 		</AppBar>

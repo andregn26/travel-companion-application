@@ -4,7 +4,7 @@ import Header from "./components/Header/Header";
 import List from "./components/List/List";
 import Map from "./components/Map/Map";
 //MATERIAL UI
-import { CssBaseline, Grid, ThemeProvider } from "@mui/material";
+import { CssBaseline, Grid } from "@mui/material";
 
 function App() {
 	return (
@@ -12,7 +12,7 @@ function App() {
 			<CssBaseline />
 
 			<Header />
-			<Grid container spacing={3} sx={{ width: "100%", border: "2px solid red" }}>
+			<Grid container spacing={3} sx={{ width: "100%" }}>
 				<Grid item xs={12} md={4}>
 					<List />
 				</Grid>
