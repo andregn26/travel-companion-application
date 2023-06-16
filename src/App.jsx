@@ -12,20 +12,20 @@ import { useEffect, useState } from "react";
 function App() {
 	const [places, setPlaces] = useState([]);
 
-	const [coordinates, setCoordinates] = useState({});
+	const [coords, setCoords] = useState({});
 	const [bounds, setBounds] = useState({});
 
 	useEffect(() => {
-		navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) =>
-			setCoordinates({ lat: latitude, lng: longitude })
-		);
+		navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
+			setCoords({ lat: latitude, lng: longitude });
+		});
 	}, []);
 
 	useEffect(() => {
 		getPlacesData(bounds.sw, bounds.ne).then((data) => {
 			setPlaces(data);
 		});
-	}, [coordinates, bounds]);
+	}, [coords, bounds]);
 	return (
 		<>
 			<Header />
@@ -35,9 +35,10 @@ function App() {
 				</Grid>
 				<Grid item xs={12} md={8}>
 					<Map
-						setCoordinates={setCoordinates}
+						setCoords={setCoords}
 						setBounds={setBounds}
-						coordinates={coordinates}
+						coords={coords}
+						places={places}
 					/>
 				</Grid>
 			</Grid>

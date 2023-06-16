@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { CircularProgress, Grid, Typography, InputLabel, MenuItem, Select } from "@mui/material";
 import { StyledContainer, StyledFormControl, StyledGridList } from "./List.styles";
 import { useState } from "react";

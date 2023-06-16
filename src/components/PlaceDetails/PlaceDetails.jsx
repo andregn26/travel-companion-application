@@ -1,6 +1,129 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+import {
+	Box,
+	Typography,
+	Button,
+	Card,
+	CardMedia,
+	CardActions,
+	Chip,
+	Rating,
+	CardContent,
+} from "@mui/material";
+import { LocationOn, Phone } from "@mui/icons-material";
+import { StyledTypoAddress } from "./PlaceDetails.styles";
+
 const PlaceDetails = ({ place }) => {
-	return <div>{place.name}</div>;
+	// console.log("place -->", place);
+	return (
+		<Card elevation={6}>
+			<CardMedia
+				sx={{ height: "350px" }}
+				image={
+					place.photo
+						? place.photo.images.large.url
+						: "https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg"
+				}
+				title={place.name}
+			/>
+			<CardContent>
+				<Typography gutterBottom variant="h5">
+					{place.name}
+				</Typography>
+				<Box display={"flex"} justifyContent={"space-between"}>
+					<Rating
+						size="small"
+						value={Number(place.rating)}
+						readOnly
+					/>
+					<Typography variant="subtitle1">
+						out of {place.num_reviews} reviews
+					</Typography>
+				</Box>
+				<Box display={"flex"} justifyContent={"space-between"}>
+					<Typography variant="subtitle1">Price</Typography>
+					<Typography variant="subtitle1">
+						{place.price_level}
+					</Typography>
+				</Box>
+				<Box display={"flex"} justifyContent={"space-between"}>
+					<Typography variant="subtitle1">Ranking</Typography>
+					<Typography variant="subtitle1">{place.ranking}</Typography>
+				</Box>
+				{place?.awards?.map((award, i) => (
+					<Box
+						my={1}
+						display={"flex"}
+						justifyContent={"space-between"}
+						alignItems={"center"}
+						key={i}>
+						<img
+							src={award.images.small}
+							alt={award.display.name}
+						/>
+						<Typography
+							variant="subtitle2"
+							color="textSecondary">
+							{award.display_name}
+						</Typography>
+					</Box>
+				))}
+
+				{place?.cuisine?.map(({ name }) => (
+					<Chip key={name} size="small" label={name} />
+				))}
+				{place?.address && (
+					<StyledTypoAddress
+						gutterBottom
+						variant="body2"
+						color="textSecondary">
+						<LocationOn
+							sx={{
+								display: "flex",
+								alignItems: "center",
+								justifyContent: "space-between",
+							}}
+						/>
+						{place.address}
+					</StyledTypoAddress>
+				)}
+				{place?.phone && (
+					<StyledTypoAddress
+						gutterBottom
+						variant="body2"
+						color="textSecondary">
+						<Phone
+							sx={{
+								display: "flex",
+								alignItems: "center",
+								justifyContent: "space-between",
+							}}
+						/>
+						{place.phone}
+					</StyledTypoAddress>
+				)}
+				<CardActions>
+					<Button
+						size="small"
+						color="primary"
+						onClick={() =>
+							window.open(place.web_url, "_blank")
+						}>
+						TripAdvisor
+					</Button>
+					<Button
+						size="small"
+						color="primary"
+						onClick={() =>
+							window.open(place.website, "_blank")
+						}>
+						Website
+					</Button>
+				</CardActions>
+			</CardContent>
+		</Card>
+	);
 };
 
 export default PlaceDetails;

@@ -7,12 +7,10 @@ import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import theme from "./theme.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-	<React.StrictMode>
-		<StyledEngineProvider injectFirst>
-			<CssBaseline />
-			<StyledThemeProvider theme={theme}>
-				<App />
-			</StyledThemeProvider>
-		</StyledEngineProvider>
-	</React.StrictMode>
+	<StyledEngineProvider injectFirst>
+		<CssBaseline />
+		<StyledThemeProvider theme={theme}>
+			<App />
+		</StyledThemeProvider>
+	</StyledEngineProvider>
 );
