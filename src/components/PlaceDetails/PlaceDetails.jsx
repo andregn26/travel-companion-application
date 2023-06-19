@@ -1,18 +1,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import {
-	Box,
-	Typography,
-	Button,
-	Card,
-	CardMedia,
-	CardActions,
-	Chip,
-	Rating,
-	CardContent,
-} from "@mui/material";
-import { LocationOn, Phone } from "@mui/icons-material";
-import { StyledTypoAddress } from "./PlaceDetails.styles";
+import { Typography, Card, CardMedia, CardContent } from "@mui/material";
+import RatingPlace from "./RatingPlace";
+import PriceLevel from "./PriceLevel";
+import RankingPlace from "./RankingPlace";
+import AwardsPlace from "./AwardsPlace";
+import Cuisine from "./Cuisine";
+import Address from "./Address";
+import PhonePlace from "./PhonePlace";
+import CtaActions from "./CtaActions";
 
 const PlaceDetails = ({ place }) => {
 	// console.log("place -->", place);
@@ -31,96 +27,14 @@ const PlaceDetails = ({ place }) => {
 				<Typography gutterBottom variant="h5">
 					{place.name}
 				</Typography>
-				<Box display={"flex"} justifyContent={"space-between"}>
-					<Rating
-						size="small"
-						value={Number(place.rating)}
-						readOnly
-					/>
-					<Typography variant="subtitle1">
-						out of {place.num_reviews} reviews
-					</Typography>
-				</Box>
-				<Box display={"flex"} justifyContent={"space-between"}>
-					<Typography variant="subtitle1">Price</Typography>
-					<Typography variant="subtitle1">
-						{place.price_level}
-					</Typography>
-				</Box>
-				<Box display={"flex"} justifyContent={"space-between"}>
-					<Typography variant="subtitle1">Ranking</Typography>
-					<Typography variant="subtitle1">{place.ranking}</Typography>
-				</Box>
-				{place?.awards?.map((award, i) => (
-					<Box
-						my={1}
-						display={"flex"}
-						justifyContent={"space-between"}
-						alignItems={"center"}
-						key={i}>
-						<img
-							src={award.images.small}
-							alt={award.display.name}
-						/>
-						<Typography
-							variant="subtitle2"
-							color="textSecondary">
-							{award.display_name}
-						</Typography>
-					</Box>
-				))}
-
-				{place?.cuisine?.map(({ name }) => (
-					<Chip key={name} size="small" label={name} />
-				))}
-				{place?.address && (
-					<StyledTypoAddress
-						gutterBottom
-						variant="body2"
-						color="textSecondary">
-						<LocationOn
-							sx={{
-								display: "flex",
-								alignItems: "center",
-								justifyContent: "space-between",
-							}}
-						/>
-						{place.address}
-					</StyledTypoAddress>
-				)}
-				{place?.phone && (
-					<StyledTypoAddress
-						gutterBottom
-						variant="body2"
-						color="textSecondary">
-						<Phone
-							sx={{
-								display: "flex",
-								alignItems: "center",
-								justifyContent: "space-between",
-							}}
-						/>
-						{place.phone}
-					</StyledTypoAddress>
-				)}
-				<CardActions>
-					<Button
-						size="small"
-						color="primary"
-						onClick={() =>
-							window.open(place.web_url, "_blank")
-						}>
-						TripAdvisor
-					</Button>
-					<Button
-						size="small"
-						color="primary"
-						onClick={() =>
-							window.open(place.website, "_blank")
-						}>
-						Website
-					</Button>
-				</CardActions>
+				<RatingPlace place={place} />
+				<PriceLevel place={place} />
+				<RankingPlace place={place} />
+				<AwardsPlace place={place} />
+				<Cuisine place={place} />
+				<Address place={place} />
+				<PhonePlace place={place} />
+				<CtaActions place={place} />
 			</CardContent>
 		</Card>
 	);
