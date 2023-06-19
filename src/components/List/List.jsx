@@ -5,10 +5,8 @@ import { StyledContainer, StyledFormControl, StyledGridList, StyledLoading } fro
 import { useState, useEffect, createRef } from "react";
 import PlaceDetails from "../PlaceDetails/PlaceDetails";
 
-const List = ({ places, childClicked, isLoading }) => {
+const List = ({ places, childClicked, isLoading, type, setType, rating, setRating }) => {
 	console.log("🚀 ~ file: List.jsx:9 ~ List ~ childClicked:", childClicked);
-	const [type, setType] = useState("restaurants");
-	const [rating, setRating] = useState("");
 
 	const [elRefs, setElRefs] = useState([]);
 

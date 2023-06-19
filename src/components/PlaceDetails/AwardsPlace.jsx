@@ -11,9 +11,12 @@ const AwardsPlace = ({ place }) => {
 					justifyContent={"space-between"}
 					alignItems={"center"}
 					key={i}>
-					<img src={award.images.small} alt={award.display.name} />
+					<img
+						src={award?.images?.small}
+						alt={award?.display?.name}
+					/>
 					<Typography variant="subtitle2" color="textSecondary">
-						{award.display_name}
+						{award?.display_name}
 					</Typography>
 				</Box>
 			))}
