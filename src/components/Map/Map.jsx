@@ -10,7 +10,8 @@ import {
 	StyledPaper,
 } from "./Map.styles";
 
-const Map = ({ coords, places, setCoords, setBounds, setChildClicked }) => {
+const Map = ({ coords, places, setCoords, setBounds, setChildClicked, weatherData }) => {
+	console.log("🚀 ~ file: Map.jsx:14 ~ Map ~ weatherData:", weatherData?.daily?.data[0]);
 	const isDesktop = useMediaQuery("(min-width:600px)");
 
 	return (
@@ -67,6 +68,9 @@ const Map = ({ coords, places, setCoords, setBounds, setChildClicked }) => {
 					</StyledDivMarkContainer>
 				))}
 			</GoogleMapReact>
+			{weatherData?.daily ? (
+				<Typography>{weatherData?.daily?.data[0].summary}</Typography>
+			) : null}
 		</StyledBoxMapContainer>
 	);
 };

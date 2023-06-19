@@ -80,6 +80,7 @@ function App() {
 								: places
 						}
 						setChildClicked={setChildClicked}
+						weatherData={weatherData}
 					/>
 				</Grid>
 			</Grid>
