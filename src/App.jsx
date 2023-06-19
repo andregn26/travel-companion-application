@@ -6,13 +6,14 @@ import Map from "./components/Map/Map";
 //MATERIAL UI
 import { Grid } from "@mui/material";
 
-import { getPlacesData } from "./api/index";
+import { getPlacesData, getWeatherData } from "./api/index";
 import { useEffect, useState } from "react";
 
 function App() {
 	const [places, setPlaces] = useState([]);
 
 	const [childClicked, setChildClicked] = useState(false);
+	const [weatherData, setWeatherData] = useState({});
 
 	const [coords, setCoords] = useState({});
 	const [bounds, setBounds] = useState({});
@@ -26,18 +27,12 @@ function App() {
 	}, []);
 
 	useEffect(() => {
-		const filteredPlaces = places.filter((place) => place.rating > rating);
-		setFilteredPlaces(filteredPlaces);
-	}, [rating]);
-
-	useEffect(() => {
 		setIsLoading(true);
-		getPlacesData(type, bounds.sw, bounds.ne).then((data) => {
+		getPlacesData(bounds.sw, bounds.ne).then((data) => {
 			setPlaces(data);
-			setFilteredPlaces([]);
 			setIsLoading(false);
 		});
-	}, [type, coords, bounds]);
+	}, [coords, bounds]);
 	return (
 		<>
 			<Header />
