@@ -10,8 +10,11 @@ import Address from "./Address";
 import PhonePlace from "./PhonePlace";
 import CtaActions from "./CtaActions";
 
-const PlaceDetails = ({ place }) => {
+const PlaceDetails = ({ place, selected, refProp }) => {
+	console.log("🚀 ~ file: PlaceDetails.jsx:14 ~ PlaceDetails ~ refProp:", refProp);
 	// console.log("place -->", place);
+	if (selected) refProp?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+
 	return (
 		<Card elevation={6}>
 			<CardMedia

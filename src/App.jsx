@@ -12,8 +12,12 @@ import { useEffect, useState } from "react";
 function App() {
 	const [places, setPlaces] = useState([]);
 
+	const [childClicked, setChildClicked] = useState(false);
+
 	const [coords, setCoords] = useState({});
 	const [bounds, setBounds] = useState({});
+
+	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
 		navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
@@ -22,16 +26,26 @@ function App() {
 	}, []);
 
 	useEffect(() => {
+		setIsLoading(true);
 		getPlacesData(bounds.sw, bounds.ne).then((data) => {
 			setPlaces(data);
+			setIsLoading(false);
 		});
 	}, [coords, bounds]);
 	return (
 		<>
 			<Header />
-			<Grid container padding={4} sx={{ width: "100%", border: "red solid 2px" }}>
+			<Grid
+				container
+				maxHeight={"90vh"}
+				padding={4}
+				sx={{ width: "100%", border: "red solid 2px" }}>
 				<Grid item xs={12} md={4}>
-					<List places={places} />
+					<List
+						places={places}
+						childClicked={childClicked}
+						isLoading={isLoading}
+					/>
 				</Grid>
 				<Grid item xs={12} md={8}>
 					<Map
@@ -39,6 +53,7 @@ function App() {
 						setBounds={setBounds}
 						coords={coords}
 						places={places}
+						setChildClicked={setChildClicked}
 					/>
 				</Grid>
 			</Grid>

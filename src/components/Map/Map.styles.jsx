@@ -3,16 +3,17 @@ import { Box, Paper } from "@mui/material";
 import styled from "styled-components";
 
 export const StyledBoxMapContainer = styled("div")`
-	height: 85vh;
+	height: 80vh;
 	width: 100%;
 `;
 
 export const StyledDivMarkContainer = styled(Box)`
 	position: absolute;
+	cursor: pointer;
 	transform: translate(-50%, -50%);
-	z-index: 1;
+	z-index: 10000;
 	&:hover {
-		z-index: 2;
+		z-index: 20000;
 	}
 `;
 
@@ -25,5 +26,5 @@ export const StyledPaper = styled(Paper)`
 `;
 
 export const StyledImg = styled("img")`
-	cursor: "pointer";
+	cursor: "pointer" !important;
 `;
