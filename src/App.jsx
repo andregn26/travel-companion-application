@@ -6,7 +6,7 @@ import Map from "./components/Map/Map";
 //MATERIAL UI
 import { Grid } from "@mui/material";
 
-import { getPlacesData } from "./api/index";
+import { getPlacesData, getWeatherData } from "./api/index";
 import { useEffect, useState } from "react";
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
 	const [rating, setRating] = useState("");
 	const [filteredPlaces, setFilteredPlaces] = useState([]);
 	const [childClicked, setChildClicked] = useState(false);
+	const [weatherData, setWeatherData] = useState({});
 
 	const [coords, setCoords] = useState({});
 	const [bounds, setBounds] = useState({});
@@ -33,16 +34,21 @@ function App() {
 	}, [rating]);
 
 	useEffect(() => {
-		setIsLoading(true);
-		getPlacesData(type, bounds.sw, bounds.ne).then((data) => {
-			setPlaces(data);
-			setFilteredPlaces([]);
-			setIsLoading(false);
-		});
-	}, [type, coords, bounds]);
+		if (bounds.sw && bounds.ne) {
+			setIsLoading(true);
+			getWeatherData(coords.lat, coords.lng).then((data) => setWeatherData(data));
+			getPlacesData(type, bounds.sw, bounds.ne).then((data) => {
+				setPlaces(
+					data?.filter((place) => place.name && place.num_reviews > 0)
+				);
+				setFilteredPlaces([]);
+				setIsLoading(false);
+			});
+		}
+	}, [type, bounds]);
 	return (
 		<>
-			<Header />
+			<Header setCoords={setCoords} />
 			<Grid
 				container
 				maxHeight={"90vh"}

@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import { useState } from "react";
 import { Autocomplete } from "@react-google-maps/api";
 import { AppBar, Toolbar, Box, useTheme } from "@mui/material";
 import {
@@ -9,8 +10,17 @@ import {
 } from "./Header.styles";
 import SearchIcon from "@mui/icons-material/Search";
 
-const Header = () => {
+const Header = ({ setCoords }) => {
 	const theme = useTheme();
+	const [autocomplete, setAutocomplete] = useState(null);
+	const onLoad = (autoC) => {
+		setAutocomplete(autoC);
+	};
+	const onPlaceChanged = () => {
+		const lat = autocomplete.getPlace().geometry.location.lat();
+		const lng = autocomplete.getPlace().geometry.location.lng();
+		setCoords({ lat, lng });
+	};
 	return (
 		<AppBar position="static">
 			<Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -21,14 +31,16 @@ const Header = () => {
 					<StyledTypographyTitle variant={"h6"}>
 						Explore new places
 					</StyledTypographyTitle>
-					{/* <Autocomplete> */}
-					<StyledDivSearch>
-						<StyledDivSearchIcon>
-							<SearchIcon />
-						</StyledDivSearchIcon>
-						<StyledInputBase placeholder="Search..." />
-					</StyledDivSearch>
-					{/* </Autocomplete> */}
+					<Autocomplete
+						onLoad={onLoad}
+						onPlaceChanged={onPlaceChanged}>
+						<StyledDivSearch>
+							<StyledDivSearchIcon>
+								<SearchIcon />
+							</StyledDivSearchIcon>
+							<StyledInputBase placeholder="Search..." />
+						</StyledDivSearch>
+					</Autocomplete>
 				</Box>
 			</Toolbar>
 		</AppBar>
