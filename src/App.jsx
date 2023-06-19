@@ -60,6 +60,7 @@ function App() {
 						coords={coords}
 						places={places}
 						setChildClicked={setChildClicked}
+						weatherData={weatherData}
 					/>
 				</Grid>
 			</Grid>
