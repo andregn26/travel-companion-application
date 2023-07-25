@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
@@ -7,7 +6,7 @@ import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import theme from "./theme.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-	<StyledEngineProvider injectFirst>
+	<StyledEngineProvider injectFirst theme={theme}>
 		<CssBaseline />
 		<StyledThemeProvider theme={theme}>
 			<App />

@@ -23,17 +23,15 @@ const Header = ({ setCoords }) => {
 	};
 	return (
 		<AppBar position="static">
-			<Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-				<StyledTypographyTitle variant={"h5"}>
-					Travel Advisor
-				</StyledTypographyTitle>
+			<Toolbar
+				sx={{
+					display: "flex",
+					justifyContent: "space-between",
+				}}>
+				<StyledTypographyTitle variant={"h5"}>Travel Advisor</StyledTypographyTitle>
 				<Box display={"flex"} alignItems={"center"}>
-					<StyledTypographyTitle variant={"h6"}>
-						Explore new places
-					</StyledTypographyTitle>
-					<Autocomplete
-						onLoad={onLoad}
-						onPlaceChanged={onPlaceChanged}>
+					<StyledTypographyTitle variant={"h6"}>Explore new places</StyledTypographyTitle>
+					<Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
 						<StyledDivSearch>
 							<StyledDivSearchIcon>
 								<SearchIcon />

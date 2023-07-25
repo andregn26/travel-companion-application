@@ -38,9 +38,7 @@ function App() {
 			setIsLoading(true);
 			getWeatherData(coords.lat, coords.lng).then((data) => setWeatherData(data));
 			getPlacesData(type, bounds.sw, bounds.ne).then((data) => {
-				setPlaces(
-					data?.filter((place) => place.name && place.num_reviews > 0)
-				);
+				setPlaces(data?.filter((place) => place.name && place.num_reviews > 0));
 				setFilteredPlaces([]);
 				setIsLoading(false);
 			});
@@ -49,18 +47,10 @@ function App() {
 	return (
 		<>
 			<Header setCoords={setCoords} />
-			<Grid
-				container
-				maxHeight={"90vh"}
-				padding={4}
-				sx={{ width: "100%", border: "red solid 2px" }}>
+			<Grid container maxHeight={"90vh"} padding={4} sx={{ width: "100%" }}>
 				<Grid item xs={12} md={4}>
 					<List
-						places={
-							filteredPlaces.length
-								? filteredPlaces
-								: places
-						}
+						places={filteredPlaces.length ? filteredPlaces : places}
 						childClicked={childClicked}
 						isLoading={isLoading}
 						type={type}
@@ -74,11 +64,7 @@ function App() {
 						setCoords={setCoords}
 						setBounds={setBounds}
 						coords={coords}
-						places={
-							filteredPlaces.length
-								? filteredPlaces
-								: places
-						}
+						places={filteredPlaces.length ? filteredPlaces : places}
 						setChildClicked={setChildClicked}
 						weatherData={weatherData}
 					/>
